@@ -1,0 +1,53 @@
+.parent{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+.container{
+    width: 530px;
+    height: 540px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -220px 0 0 -280px;
+}
+
+form{
+    text-align: center;
+}
+
+p{
+    width: 500px;
+    height: 25px;
+    margin: 10px 30px 15px 10px;
+}
+
+.inp{
+    width: 531px;
+}
+
+input{
+    font-size: 17px;
+}
+
+label{
+    font-size: 23px;
+}
+
+button{
+    font-size: 16px;
+    width: 90px;
+    margin-left: 70px;
+}
+
+h1{
+    margin-left: 35px;
+}
+
+a{
+    margin-left: 260px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/registrationCSS.css}">
+</head>
+<body>
+<div class="parent">
+    <div class="container">
+        <form class="form-signin" th:method="POST" th:action="@{/registration}" th:object="${user}">
+            <h1 class="form-signin-heading">Document Catalog Management</h1>
+            <p class="inp">
+                <label for="login">Login</label>
+                <input type="text" id="login" th:field="*{login}" class="form-control" required>
+            </p>
+            <p class="inpE">
+                <label for="email">Email</label>
+                <input type="text" id="email" th:field="*{email}" class="form-control" required>
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="text" id="password" th:field="*{password}" class="form-control" required>
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Enter</button>
+        </form>
+        <br>
+        <a href="/login">Login</a>
+    </div>
+</div>
+
+</body>
+</html>

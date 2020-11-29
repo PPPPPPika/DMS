@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>DCM</title>
+    <link rel="stylesheet" th:href="@{/css/loginCSS.css}">
+</head>
+<body>
+<div class="parent">
+    <div class="container">
+        <form class="form-signin" method="post" action="/login">
+            <h1 class="form-signin-heading">Document Catalog Management</h1>
+            <p class="inp">
+                <label for="username">Login</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="" required>
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="" required>
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Enter</button>
+        </form>
+        <br>
+        <a href="/registration">Registration</a>
+    </div>
+</div>
+
+</body>
+</html>
