@@ -3,46 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>DCM</title>
-    <link rel="stylesheet" th:href="@{/css/documentsCSS.css}">
+    <link rel="stylesheet" th:href="@{/css/documentCSS.css}">
+    <link rel="stylesheet" th:href="@{/css/allDocumentsCSS.css}">
+
 </head>
 <body>
 
 <header th:insert="header :: headerB"></header>
 
-<div class="textField">
-    <div style="text-align: center;">
-                <pre>
+<div th:insert="docPanel :: DivDocPanel"></div>
 
-
-
-
-
-
-
-
-
-
-
-
-        Documents
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </pre>
-    </div>
+<div>
+    <center>
+        <div th:each="doc : ${documents}">
+            <p class="q" th:text="'Document name: ' + ${doc.getName()}"></p>
+            <p class="w" th:text="'Document author: ' + ${doc.getAuthor_document().getLogin()}"></p>
+            <p class="e" th:text="'Current version of the document: ' + ${doc.getCurrentVersion()}"></p>
+            <p class="r" th:text="'Outdated version of the document: ' + ${doc.getPrevious_versions_document}"></p>
+            <hr>
+        </div>
+    </center>
 </div>
-
-<footer th:insert="footer :: footerB"></footer>
 
 </body>
 </html>

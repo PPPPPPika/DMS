@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DCM</title>
+    <link rel="stylesheet" th:href="@{/css/documentCSS.css}">
+    <link rel="stylesheet" th:href="@{/css/dCSS.css}">
+</head>
+<body>
+
+<header th:insert="header :: headerB"></header>
+
+<div th:insert="docPanel :: DivDocPanel"></div>
+
+<div class="createDoc">
+    <div class="outputDoc">
+        <div style="text-align: center;">
+            <h2 style="margin-left: 30px;">New Document</h2>
+            <form class="form-signin" method="post" action="/DCM/documents/new" enctype="multipart/form-data">
+                <p class="inpN">
+                    <label for="name">Name document:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </p>
+                <p class="inpV">
+                    <label for="version">Version:</label>
+                    <input type="text" id="version" name="version" class="form-control" required>
+                </p>
+                <p class="inpF">
+                    <input type="file" id="file" name="file" class="form-controlF" required>
+                </p>
+                <button class="but" type="submit">Enter</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="footer :: footerB"></footer>
+
+</body>
+</html>

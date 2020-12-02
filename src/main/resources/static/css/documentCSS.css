@@ -45,6 +45,12 @@ a{
     height: auto;
 }
 
+.documentPanel{
+    margin-top: 17px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid;
+}
+
 .footer {
     margin-right: 7px;
     margin-left: 7px;

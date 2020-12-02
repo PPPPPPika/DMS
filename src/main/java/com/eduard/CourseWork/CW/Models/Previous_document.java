@@ -1,8 +1,5 @@
 package com.eduard.CourseWork.CW.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
