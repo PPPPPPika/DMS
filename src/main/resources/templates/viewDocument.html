@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DCM</title>
+    <link rel="stylesheet" th:href="@{/css/documentCSS.css}">
+    <link rel="stylesheet" th:href="@{/css/allDocumentsCSS.css}">
+
+</head>
+<body>
+
+<header th:insert="header :: headerB"></header>
+
+<div th:insert="docPanel :: DivDocPanel"></div>
+
+<div>
+    <center>
+        <p th:text="'Document id: ' + ${document.getId()}"></p>
+        <p th:text="'Document name: ' + ${document.getName()}"></p>
+        <p th:text="'Document author: ' + ${document.getAuthor_document().getLogin()}"></p>
+        <p th:text="'Current version of the document: ' + ${document.getCurrentVersion()}"></p>
+        <hr style="width: 700px;color: black; margin-top: 10px;">
+        <h4>List of old documents:</h4>
+        <div th:each="pdoc : ${document.getPrevious_versions_document()}">
+            <p th:text="'ID of the old document: ' + ${pdoc.getId()}"></p>
+            <p th:text="'Name of the old document: ' + ${pdoc.getName()}"></p>
+            <p th:text="'Author of the old document: ' + ${pdoc.getAuthor()}"></p>
+            <p th:text="'Version of the old document: ' + ${pdoc.getVersion()}"></p>
+            <br>
+        </div>
+        <hr style="width: 700px;color: black; margin-top: 10px;">
+        <div>
+            <a style="color: black; margin-bottom: 40px; margin-left: 50px; text-decoration:underline; font-size: 17px;" href="">Delete document</a>
+            <a style="color: black; margin-bottom: 40px; margin-left: 40px; text-decoration:underline; font-size: 17px;" th:href="@{/DCM/documents/newVersion/{id}(id=${document.getId()})}">Create a new version</a>
+        </div>
+        <hr style="width: 700px;color: black; margin-top: 10px;">
+    </center>
+</div>
+
+</body>
+</html>

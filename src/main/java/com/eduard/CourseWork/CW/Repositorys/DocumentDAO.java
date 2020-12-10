@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface DocumentDAO extends CrudRepository<Document, Long> {
     Optional<Document> findByName(String name);
+    Optional<Document> findByNameAndCurrentVersionAndPath(String name, String version, String path);
 }

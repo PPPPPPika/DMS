@@ -21,7 +21,7 @@ public class Document {
     @Column(name = "current_version_document", nullable = false)
     private String currentVersion;
 
-    @OneToMany(mappedBy = "previous_version_document", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "currentDocument", fetch = FetchType.LAZY)
     private List<Previous_document> previous_versions_document;
 
     @Column(name = "path_document", nullable = false, length = 200)
@@ -46,6 +46,13 @@ public class Document {
         this.author_document = author_document;
     }
 
+    public Document(String name, User author_document, String currentVersion, String path) {
+        this.name = name;
+        this.author_document = author_document;
+        this.currentVersion = currentVersion;
+        this.path = path;
+    }
+
     public Document(Long id, String name, User author_document, String currentVersion, String path) {
         this.id = id;
         this.name = name;
@@ -56,6 +63,14 @@ public class Document {
 
     public Document(Long id, String name, User author_document, String currentVersion, List<Previous_document> previous_versions_document, String path) {
         this.id = id;
+        this.name = name;
+        this.author_document = author_document;
+        this.currentVersion = currentVersion;
+        this.previous_versions_document = previous_versions_document;
+        this.path = path;
+    }
+
+    public Document(String name, User author_document, String currentVersion, List<Previous_document> previous_versions_document, String path) {
         this.name = name;
         this.author_document = author_document;
         this.currentVersion = currentVersion;

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @Service("createDocumentService")
 public class CreateDocumentService {
-    public final static String pathHolder = "C:/Users/edik_/holderDocuments/";
+    public final String pathHolder = "C:/Users/edik_/holderDocuments/";
 
     private final DocumentDAO documentDAO;
     private final UserService userService;
@@ -49,7 +49,6 @@ public class CreateDocumentService {
     public void createDocument(String name, String author, String version, MultipartFile multipartFile){
         Document document = new Document();
 
-        //сделать проверки
         document.setName(name);
         document.setAuthor_document(userService.loadUserByLogin(author));
         document.setCurrentVersion(version);

@@ -5,7 +5,6 @@
     <title>DCM</title>
     <link rel="stylesheet" th:href="@{/css/documentCSS.css}">
     <link rel="stylesheet" th:href="@{/css/allDocumentsCSS.css}">
-
 </head>
 <body>
 
@@ -18,9 +17,19 @@
         <div th:each="doc : ${documents}">
             <p class="q" th:text="'Document name: ' + ${doc.getName()}"></p>
             <p class="w" th:text="'Document author: ' + ${doc.getAuthor_document().getLogin()}"></p>
-            <p class="e" th:text="'Current version of the document: ' + ${doc.getCurrentVersion()}"></p>
-            <p class="r" th:text="'Outdated version of the document: ' + ${doc.getPrevious_versions_document}"></p>
-            <hr>
+            <!--<p>List of old documents:</p>
+            <div th:each="pdoc : ${doc.getPrevious_versions_document()}">
+                <p th:text="'Name of the old document: ' + ${pdoc.getName_previous_document()} + '; '
+                          + 'Author of the old document: ' + ${pdoc.getAuthor_previous_document()}">
+                </p>
+            </div>-->
+            <div style="margin-left: 50px;">
+                <a style="color: black; margin-bottom: 40px; text-decoration:underline; font-size: 17px;"
+                   th:href="@{/DCM/documents/{id}(id=${doc.getId()})}">View document</a>
+                <a style="color: black; margin-left: 50px; margin-bottom: 40px; text-decoration:underline; font-size: 17px;"
+                   th:href="@{/DCM/documents/download/{fileName}(fileName=${doc.getName()})}">Download document</a>
+            </div>
+            <hr style="width: 450px;color: black;">
         </div>
     </center>
 </div>
