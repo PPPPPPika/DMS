@@ -39,8 +39,8 @@ public class NewVersionService {
         return collection.get();
     }
 
-    public void deleteDocument(Document document){
-        documentDAO.deleteById(document.getId());
+    public void deleteDocumentById(Long id){
+        documentDAO.deleteById(id);
     }
 
     public void saveNewDocument(Document document){

@@ -2,6 +2,7 @@ package com.eduard.CourseWork.CW.Controllers;
 
 import com.eduard.CourseWork.CW.Models.Document;
 import com.eduard.CourseWork.CW.Models.Previous_document;
+import com.eduard.CourseWork.CW.Repositorys.UserDAO;
 import com.eduard.CourseWork.CW.Services.documentsServices.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,18 +27,22 @@ public class DocumentController {
     private final DownloadDocumentService downloadDocumentService;
     private final NewVersionService newVersionService;
     private final PreviousDocumentService previousDocumentService;
+    private final UserDAO userDAO;
+
 
     @Autowired
     public DocumentController(@Qualifier("createDocumentService") CreateDocumentService createDocumentService,
                               @Qualifier("viewDocumentService") ViewDocumentService viewDocumentService,
                               @Qualifier("downloadDocumentService") DownloadDocumentService downloadDocumentService,
                               @Qualifier("newVersionService") NewVersionService newVersionService,
-                              @Qualifier("previousDocumentService") PreviousDocumentService previousDocumentService) {
+                              @Qualifier("previousDocumentService") PreviousDocumentService previousDocumentService,
+                              UserDAO userDAO) {
         this.createDocumentService = createDocumentService;
         this.viewDocumentService = viewDocumentService;
         this.downloadDocumentService = downloadDocumentService;
         this.newVersionService = newVersionService;
         this.previousDocumentService = previousDocumentService;
+        this.userDAO = userDAO;
     }
 
     @GetMapping("/documents/new")
@@ -160,10 +165,8 @@ public class DocumentController {
                 previousDocumentService.deletePreviousDocument(pDocuments.getId());
             }
 
-            document.setAuthor_document(null);
-
-            newVersionService.saveNewDocument(document);
-            newVersionService.deleteDocument(document);
+            newVersionService.deleteDocumentById(id);
+            userDAO.save(document.getAuthor_document());
         }
 
         return "redirect:/DCM/documents";
@@ -205,7 +208,7 @@ public class DocumentController {
             }
 
             previousDocumentService.savePreviousDocument(previousDocumentService.createPreviousDocument(doc, findDocument));
-            newVersionService.deleteDocument(doc);
+            newVersionService.deleteDocumentById(doc.getId());
 
             try {
                 createDocumentService.transferFile(multipartFile);

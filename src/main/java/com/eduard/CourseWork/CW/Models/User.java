@@ -15,25 +15,44 @@ public class User {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "login", nullable = false, length = 40, unique = true)
+    @Column(name = "login", length = 40, unique = true)
     private String login;
 
-    @Column(name = "email", nullable = false, length = 40, unique = true)
+    @Column(name = "email", length = 40, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 200)
+    @Column(name = "password", length = 200)
     private String password;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "role", nullable = false, length = 20)
+    @Column(name = "role", length = 20)
     private Role role;
 
     @OneToMany(mappedBy = "author_document", fetch = FetchType.LAZY)
     private List<Document> documents;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "status", nullable = false, length = 20)
+    @Column(name = "status", length = 20)
     private Status status;
+
+    public User(){
+
+    }
+
+    public User(long id) {
+        this.id = id;
+    }
+
+
+    public User(long id, String login, String email, String password, Role role, List<Document> documents, Status status) {
+        this.id = id;
+        this.login = login;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.documents = documents;
+        this.status = status;
+    }
 
     public long getId() {
         return id;
