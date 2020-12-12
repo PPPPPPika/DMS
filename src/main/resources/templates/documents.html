@@ -17,12 +17,6 @@
         <div th:each="doc : ${documents}">
             <p class="q" th:text="'Document name: ' + ${doc.getName()}"></p>
             <p class="w" th:text="'Document author: ' + ${doc.getAuthor_document().getLogin()}"></p>
-            <!--<p>List of old documents:</p>
-            <div th:each="pdoc : ${doc.getPrevious_versions_document()}">
-                <p th:text="'Name of the old document: ' + ${pdoc.getName_previous_document()} + '; '
-                          + 'Author of the old document: ' + ${pdoc.getAuthor_previous_document()}">
-                </p>
-            </div>-->
             <div style="margin-left: 50px;">
                 <a style="color: black; margin-bottom: 40px; text-decoration:underline; font-size: 17px;"
                    th:href="@{/DCM/documents/{id}(id=${doc.getId()})}">View document</a>

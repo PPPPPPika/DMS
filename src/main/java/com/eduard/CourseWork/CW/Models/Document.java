@@ -15,7 +15,7 @@ public class Document {
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "author_document", nullable = false)
+    @JoinColumn(name = "author_document")
     private User author_document;
 
     @Column(name = "current_version_document", nullable = false)

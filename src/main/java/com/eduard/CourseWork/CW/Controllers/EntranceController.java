@@ -35,13 +35,7 @@ public class EntranceController {
 
             return "redirect:/login";
         }
-        else {
-            System.out.println("Error registration: " + "\n" +             //лишний кусок кода
-                               "Login: " + user.getLogin() + "\n" +
-                               "Email: " + user.getEmail() + "\n" +
-                               "Password: " + user.getPassword());
-
+        else
             return "registration";
-        }
     }
 }

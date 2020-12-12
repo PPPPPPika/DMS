@@ -26,10 +26,3 @@ public class HeaderController {
     }
 }
 
-
-
-
-/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-
-        System.out.println(name);*/

@@ -2,7 +2,6 @@ package com.eduard.CourseWork.CW.Controllers;
 
 import com.eduard.CourseWork.CW.Models.Document;
 import com.eduard.CourseWork.CW.Models.Previous_document;
-import com.eduard.CourseWork.CW.Models.User;
 import com.eduard.CourseWork.CW.Services.documentsServices.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,7 +21,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/DCM")
 public class DocumentController {
-
     private final CreateDocumentService createDocumentService;
     private final ViewDocumentService viewDocumentService;
     private final DownloadDocumentService downloadDocumentService;
@@ -81,13 +79,13 @@ public class DocumentController {
     @GetMapping("/documents/download/{fileName}")
     @ResponseBody
     public void downloadDocument(@PathVariable("fileName") String fileName, HttpServletResponse response){
-        if (fileName.indexOf(".doc")>-1) response.setContentType("application/msword");
+        /*if (fileName.indexOf(".doc")>-1)  response.setContentType("application/msword");
         if (fileName.indexOf(".docx")>-1) response.setContentType("application/msword");
-        if (fileName.indexOf(".xls")>-1) response.setContentType("application/vnd.ms-excel");
-        if (fileName.indexOf(".csv")>-1) response.setContentType("application/vnd.ms-excel");
-        if (fileName.indexOf(".ppt")>-1) response.setContentType("application/ppt");
-        if (fileName.indexOf(".pdf")>-1) response.setContentType("application/pdf");
-        if (fileName.indexOf(".zip")>-1) response.setContentType("application/zip");
+        if (fileName.indexOf(".xls")>-1)  response.setContentType("application/vnd.ms-excel");
+        if (fileName.indexOf(".csv")>-1)  response.setContentType("application/vnd.ms-excel");
+        if (fileName.indexOf(".ppt")>-1)  response.setContentType("application/ppt");
+        if (fileName.indexOf(".pdf")>-1)  response.setContentType("application/pdf");
+        if (fileName.indexOf(".zip")>-1)  response.setContentType("application/zip");*/
 
         response.setHeader("Content-Disposition", "attachment; filename=" + downloadDocumentService.outputDocumentName(viewDocumentService.searchByName(fileName).getPath()));
         response.setHeader("Content-Transfer-Encoding", "binary");
@@ -110,6 +108,67 @@ public class DocumentController {
             e.printStackTrace();
         }
     }
+
+    @GetMapping("/documents/download/previousDocument/{id}")
+    @ResponseBody
+    public void downloadPreviousDocument(@PathVariable("id") Long id, HttpServletResponse response){
+        /*if (fileName.indexOf(".doc")>-1)  response.setContentType("application/msword");
+        if (fileName.indexOf(".docx")>-1) response.setContentType("application/msword");
+        if (fileName.indexOf(".xls")>-1)  response.setContentType("application/vnd.ms-excel");
+        if (fileName.indexOf(".csv")>-1)  response.setContentType("application/vnd.ms-excel");
+        if (fileName.indexOf(".ppt")>-1)  response.setContentType("application/ppt");
+        if (fileName.indexOf(".pdf")>-1)  response.setContentType("application/pdf");
+        if (fileName.indexOf(".zip")>-1)  response.setContentType("application/zip");*/
+
+        String fileName = downloadDocumentService.outputDocumentName(previousDocumentService.findByIdPreviousDocument(id).getPath_document());
+
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals(previousDocumentService.findByIdPreviousDocument(id).getAuthor())){
+            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+            response.setHeader("Content-Transfer-Encoding", "binary");
+
+            try {
+                BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+                FileInputStream fis = new FileInputStream(createDocumentService.pathHolder + fileName);
+
+                int len;
+                byte[] buf = new byte[1024];
+
+                while((len = fis.read(buf)) > 0) {
+                    bos.write(buf,0,len);
+                }
+
+                bos.close();
+                response.flushBuffer();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @GetMapping("/documents/delete/{id}")
+    public String deleteDocument(@PathVariable("id") Long id){
+        Document document = viewDocumentService.viewDocument(id);
+
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals(document.getAuthor_document().getLogin())){
+            List<Previous_document> previous_documents = document.getPrevious_versions_document();
+
+            for (Previous_document pDocuments : previous_documents){
+                pDocuments.setCurrentDocument(null);
+
+                previousDocumentService.savePreviousDocument(pDocuments);
+                previousDocumentService.deletePreviousDocument(pDocuments.getId());
+            }
+
+            document.setAuthor_document(null);
+
+            newVersionService.saveNewDocument(document);
+            newVersionService.deleteDocument(document);
+        }
+
+        return "redirect:/DCM/documents";
+    }
+
 
     @GetMapping("/documents/newVersion/{id}")
     public String getCreateNewVersion(@PathVariable("id") Long id, Model model){
@@ -139,9 +198,9 @@ public class DocumentController {
             if (!doc.getPrevious_versions_document().isEmpty()) {
                 List<Previous_document> pDoc = previousDocumentService.findByDocuments(doc);
 
-                for (int i = 0; i < pDoc.size(); i++) {
-                    pDoc.get(i).setCurrentDocument(documentNewVersion);
-                    previousDocumentService.savePreviousDocument(pDoc.get(i));
+                for (Previous_document previous_document : pDoc) {
+                    previous_document.setCurrentDocument(documentNewVersion);
+                    previousDocumentService.savePreviousDocument(previous_document);
                 }
             }
 
@@ -161,5 +220,6 @@ public class DocumentController {
     }
 }
 
-    /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    String author = auth.getName();*/
+
+/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+String author = auth.getName();*/

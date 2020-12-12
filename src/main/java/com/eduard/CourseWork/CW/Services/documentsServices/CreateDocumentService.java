@@ -45,7 +45,6 @@ public class CreateDocumentService {
         multipartFile.transferTo(new File(pathHolder + multipartFile.getOriginalFilename()));
     }
 
-    //попробовать сделать через второй конструктор
     public void createDocument(String name, String author, String version, MultipartFile multipartFile){
         Document document = new Document();
 

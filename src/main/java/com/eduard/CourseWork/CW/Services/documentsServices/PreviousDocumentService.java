@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("previousDocumentService")
 public class PreviousDocumentService {
@@ -17,7 +18,6 @@ public class PreviousDocumentService {
         this.previous_documentDAO = previous_documentDAO;
     }
 
-    //док без текущей версии
     public Previous_document createPreviousDocument(Document document, Document newDocument){
         return new Previous_document(document.getName(),
                                      document.getAuthor_document().getLogin(),
@@ -26,8 +26,10 @@ public class PreviousDocumentService {
                                      document.getPath());
     }
 
-    public boolean checkExistPreviousDocument(Previous_document previous_document){
-        return previous_documentDAO.findById(previous_document.getId()).isPresent();//true если существует
+    public Previous_document findByIdPreviousDocument(Long id){
+        Optional<Previous_document> previous_document = previous_documentDAO.findById(id);
+
+        return previous_document.get();
     }
 
     public List<Previous_document> findByDocuments(Document document){
@@ -36,6 +38,10 @@ public class PreviousDocumentService {
 
     public void savePreviousDocument(Previous_document previous_document){
         previous_documentDAO.save(previous_document);
+    }
+
+    public void deletePreviousDocument(Long id){
+        previous_documentDAO.deleteById(id);
     }
 
 }

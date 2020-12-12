@@ -26,12 +26,17 @@
             <p th:text="'Name of the old document: ' + ${pdoc.getName()}"></p>
             <p th:text="'Author of the old document: ' + ${pdoc.getAuthor()}"></p>
             <p th:text="'Version of the old document: ' + ${pdoc.getVersion()}"></p>
+            <a style="color: black; margin-left: 40px; margin-bottom: 40px; text-decoration:underline; font-size: 17px;"
+               th:href="@{/DCM/documents/download/previousDocument/{fileName}(fileName=${pdoc.getId()})}">Download document</a>
+            <br>
             <br>
         </div>
         <hr style="width: 700px;color: black; margin-top: 10px;">
         <div>
-            <a style="color: black; margin-bottom: 40px; margin-left: 50px; text-decoration:underline; font-size: 17px;" href="">Delete document</a>
-            <a style="color: black; margin-bottom: 40px; margin-left: 40px; text-decoration:underline; font-size: 17px;" th:href="@{/DCM/documents/newVersion/{id}(id=${document.getId()})}">Create a new version</a>
+            <a style="color: black; margin-bottom: 40px; margin-left: 50px; text-decoration:underline; font-size: 17px;"
+               th:href="@{/DCM/documents/delete/{id}(id=${document.getId()})}">Delete document</a>
+            <a style="color: black; margin-bottom: 40px; margin-left: 40px; text-decoration:underline; font-size: 17px;"
+               th:href="@{/DCM/documents/newVersion/{id}(id=${document.getId()})}">Create a new version</a>
         </div>
         <hr style="width: 700px;color: black; margin-top: 10px;">
     </center>

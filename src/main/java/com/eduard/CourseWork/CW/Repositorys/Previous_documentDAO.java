@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface Previous_documentDAO extends CrudRepository<Previous_document, Long> {
     List<Previous_document> findByCurrentDocument(Document document);
+    List<Previous_document> findAll();
 }

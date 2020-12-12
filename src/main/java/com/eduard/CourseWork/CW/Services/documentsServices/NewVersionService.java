@@ -14,12 +14,10 @@ import java.util.Optional;
 public class NewVersionService {
     private final String pathHolder = "C:/Users/edik_/holderDocuments/";
 
-    private final PreviousDocumentService previousDocumentService;
     private final DocumentDAO documentDAO;
 
     @Autowired
-    public NewVersionService(PreviousDocumentService previousDocumentService, DocumentDAO documentDAO) {
-        this.previousDocumentService = previousDocumentService;
+    public NewVersionService(DocumentDAO documentDAO) {
         this.documentDAO = documentDAO;
     }
 
@@ -35,17 +33,11 @@ public class NewVersionService {
 
     }
 
-//String name, User author_document, String currentVersion, List<Previous_document> previous_versions_document, String path
-
     public Document findDocumentBySomeField(String name, String version, String path){
         Optional<Document> collection = documentDAO.findByNameAndCurrentVersionAndPath(name, version, path);
 
         return collection.get();
     }
-
-    //findByNameAndCurrentVersionAndPath
-
-
 
     public void deleteDocument(Document document){
         documentDAO.deleteById(document.getId());

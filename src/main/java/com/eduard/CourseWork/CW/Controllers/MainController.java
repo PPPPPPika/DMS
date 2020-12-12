@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/DCM")
 public class MainController {
     @GetMapping("/MainPage")
-    public String getMainPage(HttpServletRequest request){
+    public String getMainPage(){
         return "main";
     }
 }

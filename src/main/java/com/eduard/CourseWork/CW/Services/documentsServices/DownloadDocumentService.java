@@ -20,5 +20,4 @@ public class DownloadDocumentService {
 
         return new StringBuffer(String.valueOf(arrChar)).reverse().toString();
     }
-
 }
