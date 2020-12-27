@@ -29,20 +29,19 @@ public class DocumentController {
     private final PreviousDocumentService previousDocumentService;
     private final UserDAO userDAO;
 
-
     @Autowired
-    public DocumentController(@Qualifier("createDocumentService") CreateDocumentService createDocumentService,
-                              @Qualifier("viewDocumentService") ViewDocumentService viewDocumentService,
+    public DocumentController(@Qualifier("createDocumentService")   CreateDocumentService createDocumentService,
+                              @Qualifier("viewDocumentService")     ViewDocumentService viewDocumentService,
                               @Qualifier("downloadDocumentService") DownloadDocumentService downloadDocumentService,
-                              @Qualifier("newVersionService") NewVersionService newVersionService,
+                              @Qualifier("newVersionService")       NewVersionService newVersionService,
                               @Qualifier("previousDocumentService") PreviousDocumentService previousDocumentService,
                               UserDAO userDAO) {
-        this.createDocumentService = createDocumentService;
-        this.viewDocumentService = viewDocumentService;
+        this.createDocumentService   = createDocumentService;
+        this.viewDocumentService     = viewDocumentService;
         this.downloadDocumentService = downloadDocumentService;
-        this.newVersionService = newVersionService;
+        this.newVersionService       = newVersionService;
         this.previousDocumentService = previousDocumentService;
-        this.userDAO = userDAO;
+        this.userDAO                 = userDAO;
     }
 
     @GetMapping("/documents/new")
@@ -172,7 +171,6 @@ public class DocumentController {
         return "redirect:/DCM/documents";
     }
 
-
     @GetMapping("/documents/newVersion/{id}")
     public String getCreateNewVersion(@PathVariable("id") Long id, Model model){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals(viewDocumentService.viewDocument(id).getAuthor_document().getLogin())){
@@ -222,7 +220,6 @@ public class DocumentController {
             return "createNewVersionDocument";
     }
 }
-
 
 /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 String author = auth.getName();*/

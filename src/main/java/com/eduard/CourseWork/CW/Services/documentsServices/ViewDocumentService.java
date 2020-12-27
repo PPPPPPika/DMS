@@ -5,7 +5,6 @@ import com.eduard.CourseWork.CW.Repositorys.DocumentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Optional;
 
 @Service("viewDocumentService")
@@ -28,5 +27,4 @@ public class ViewDocumentService {
 
         return collection.get();
     }
-
 }

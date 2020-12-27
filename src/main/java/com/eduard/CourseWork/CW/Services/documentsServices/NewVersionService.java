@@ -1,13 +1,10 @@
 package com.eduard.CourseWork.CW.Services.documentsServices;
 
 import com.eduard.CourseWork.CW.Models.Document;
-import com.eduard.CourseWork.CW.Models.Previous_document;
 import com.eduard.CourseWork.CW.Repositorys.DocumentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @Service("newVersionService")
@@ -46,5 +43,4 @@ public class NewVersionService {
     public void saveNewDocument(Document document){
         documentDAO.save(document);
     }
-
 }

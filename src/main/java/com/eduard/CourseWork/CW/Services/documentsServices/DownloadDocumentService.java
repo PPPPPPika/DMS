@@ -1,7 +1,5 @@
 package com.eduard.CourseWork.CW.Services.documentsServices;
 
-import com.eduard.CourseWork.CW.Repositorys.DocumentDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("downloadDocumentService")

@@ -30,43 +30,6 @@ public class Previous_document {
 
     }
 
-    public Previous_document(long id) {
-        this.id = id;
-    }
-
-    public Previous_document(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Previous_document(long id, String name, String author) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-    }
-
-    public Previous_document(long id, String name, String author, String path_document) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-        this.path_document = path_document;
-    }
-
-    public Previous_document(String name, String author, String version, String path_document) {
-        this.name = name;
-        this.author = author;
-        this.version = version;
-        this.path_document = path_document;
-    }
-
-    public Previous_document(long id, String name, String author, Document currentDocument, String path_document) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-        this.currentDocument = currentDocument;
-        this.path_document = path_document;
-    }
-
     public Previous_document(String name, String author, String version, Document currentDocument, String path_document) {
         this.name = name;
         this.author = author;

@@ -7,7 +7,19 @@ public class CwApplicationTests{
     public String string2 = "C:/Users/edik_/holderDocuments/1.xlsx";
     public String string3 = "C:/Users/edik_/holderDocuments/АВМиС_Сидоров_Э.С._ИКБО1718.docx";
 
+    public static String str;
+
+
+
     public final String pathHolder = "C:/Users/edik_/holderDocuments/";
+
+
+    public static void main(String[] args) {
+        System.out.println(str);
+        str = "fds";
+        System.out.println(str);
+
+    }
 
     /*public void doString(){
         char[] arrChar = string1.toCharArray();
