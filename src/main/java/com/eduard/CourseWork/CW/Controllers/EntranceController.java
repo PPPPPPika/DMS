@@ -32,7 +32,6 @@ public class EntranceController {
     public String postRegistrationPage(@ModelAttribute("user") User user){
         if (registrationService.checkFieldsRegistration(user)){
             registrationService.insertUserInDB(user);
-
             return "redirect:/login";
         }
         else

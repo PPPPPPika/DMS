@@ -54,7 +54,7 @@ public class DocumentController {
                               @RequestParam String version,
                               @RequestParam ("file") MultipartFile multipartFile){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
+        
         if (!createDocumentService.checkFieldDocument(name, version, multipartFile) ||
             !createDocumentService.checkOriginality(name)){
 
@@ -174,8 +174,7 @@ public class DocumentController {
     @GetMapping("/documents/newVersion/{id}")
     public String getCreateNewVersion(@PathVariable("id") Long id, Model model){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals(viewDocumentService.viewDocument(id).getAuthor_document().getLogin())){
-            model.addAttribute("idDocument", id);
-
+            model.addAttribute("idDocument", id); //добавление переменной в html(thymeleaf)
             return "createNewVersionDocument";
         }
         else

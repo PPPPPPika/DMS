@@ -27,7 +27,6 @@ public class NewVersionService {
                             document.getAuthor_document(),
                             plusVersion(document.getCurrentVersion()),
                       pathHolder + fileName);
-
     }
 
     public Document findDocumentBySomeField(String name, String version, String path){

@@ -20,8 +20,7 @@
             <div style="margin-left: 50px;">
                 <a style="color: black; margin-bottom: 40px; text-decoration:underline; font-size: 17px;"
                    th:href="@{/DCM/documents/{id}(id=${doc.getId()})}">View document</a>
-                <a style="color: black; margin-left: 50px; margin-bottom: 40px; text-decoration:underline; font-size: 17px;"
-                   th:href="@{/DCM/documents/download/{fileName}(fileName=${doc.getName()})}">Download document</a>
+                <a style="color: black; margin-left: 50px; margin-bottom: 40px; text-decoration:underline; font-size: 17px;" th:href="@{/DCM/documents/download/{fileName}(fileName=${doc.getName()})}">Download document</a>
             </div>
             <hr style="width: 450px;color: black;">
         </div>

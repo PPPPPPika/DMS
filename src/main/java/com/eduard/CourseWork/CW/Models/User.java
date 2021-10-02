@@ -6,7 +6,6 @@ import com.eduard.CourseWork.CW.Models.Enums.Status;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -43,7 +42,6 @@ public class User {
         this.id = id;
     }
 
-
     public User(long id, String login, String email, String password, Role role, List<Document> documents, Status status) {
         this.id = id;
         this.login = login;
@@ -54,9 +52,7 @@ public class User {
         this.status = status;
     }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
 
     public void setId(long id) {
         this.id = id;
